@@ -18,7 +18,7 @@ public protocol ACSyncCoordinatorType  {
 
 open class ACSyncCoordinator: NSObject, ACSyncCoordinatorType {
     
-    open let syncGroup: DispatchGroup = DispatchGroup()
+    public let syncGroup: DispatchGroup = DispatchGroup()
     public var didSetup: Bool = false
     
     open var syncContext: ACSyncContext = ACSyncContext()
@@ -66,6 +66,15 @@ open class ACSyncCoordinator: NSObject, ACSyncCoordinatorType {
     open func syncAll(_ completion: @escaping (_ success: Bool, _ synced: [Any]?, _ error: Error?) -> ()) {
         fatalError("Should be implemented by subclass")
     }
+    
+    /**
+     eg. ValueTransformer.setValueTransformer(ACJsonTransformer<ACJsonReplaceMe>(),
+            forName: NSValueTransformerName(rawValue: "kACJsonReplaceMeTransformer"))
+     */
+    open func registerValueTransformers() {
+        // should only run once
+        fatalError("Should be implemented by subclass")
+    }
 }
 
 // MARK: - Context Owner -
@@ -88,12 +97,5 @@ extension ACSyncCoordinator: ContextOwnerType {
             cp.processChangedLocalObjects(objects, context: self)
         }
         */
-    }
-}
-
-extension ACSyncCoordinator {
-    open func registerValueTransformers() {
-        // should only run once
-        ValueTransformer.setValueTransformer(ACJsonReplaceMeTransformer(), forName: NSValueTransformerName(rawValue: "kACJsonReplaceMeTransformer"))
     }
 }
