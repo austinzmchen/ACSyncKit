@@ -15,6 +15,9 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		C4EFBD5320802AED00A4D736 /* ACSyncKitExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4EFBD5120802AED00A4D736 /* ACSyncKitExample.xcdatamodeld */; };
+		C4EFBD562080373000A4D736 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFBD542080372F00A4D736 /* User+CoreDataClass.swift */; };
+		C4EFBD572080373000A4D736 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFBD552080373000A4D736 /* User+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		7D668B88C8C969DDAC7B4464 /* Pods-ACSyncKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACSyncKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ACSyncKit_Example/Pods-ACSyncKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9D8E2E2C23A127C5A5C21FAD /* Pods-ACSyncKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACSyncKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ACSyncKit_Tests/Pods-ACSyncKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B32A1CEF5C72047CD7CE1BF7 /* Pods-ACSyncKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACSyncKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ACSyncKit_Tests/Pods-ACSyncKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4EFBD5220802AED00A4D736 /* ACSyncKitExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ACSyncKitExample.xcdatamodel; sourceTree = "<group>"; };
+		C4EFBD542080372F00A4D736 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "/Users/austinchen/workspace/workspaceSwift/ACSyncKit/Example/ACSyncKit/User+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		C4EFBD552080373000A4D736 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "/Users/austinchen/workspace/workspaceSwift/ACSyncKit/Example/ACSyncKit/User+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		C69704F42D0C18077FED19A0 /* ACSyncKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ACSyncKit.podspec; path = ../ACSyncKit.podspec; sourceTree = "<group>"; };
 		EAE98A7A06B7913F131D0315 /* Pods_ACSyncKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ACSyncKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -110,6 +116,9 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				C4EFBD5120802AED00A4D736 /* ACSyncKitExample.xcdatamodeld */,
+				C4EFBD542080372F00A4D736 /* User+CoreDataClass.swift */,
+				C4EFBD552080373000A4D736 /* User+CoreDataProperties.swift */,
 			);
 			name = "Example for ACSyncKit";
 			path = ACSyncKit;
@@ -378,6 +387,9 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				C4EFBD562080373000A4D736 /* User+CoreDataClass.swift in Sources */,
+				C4EFBD572080373000A4D736 /* User+CoreDataProperties.swift in Sources */,
+				C4EFBD5320802AED00A4D736 /* ACSyncKitExample.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +536,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ACSyncKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -539,6 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ACSyncKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -617,6 +631,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C4EFBD5120802AED00A4D736 /* ACSyncKitExample.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C4EFBD5220802AED00A4D736 /* ACSyncKitExample.xcdatamodel */,
+			);
+			currentVersion = C4EFBD5220802AED00A4D736 /* ACSyncKitExample.xcdatamodel */;
+			path = ACSyncKitExample.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }

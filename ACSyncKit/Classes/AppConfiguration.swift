@@ -50,17 +50,5 @@ extension AppConfiguration {
             }
         }
     }
-    
-    open static func appVersion() -> String {
-        return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-    }
-    
-    open static func appBuild() -> String {
-        return Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-    }
-    
-    open static func versionWithBuild() -> String {
-        return String(format: "%@ (%@)", self.appVersion(), self.appBuild())
-    }
 }
 
