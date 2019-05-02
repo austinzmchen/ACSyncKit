@@ -8,48 +8,13 @@
 import Foundation
 import CoreData
 
-public protocol ACRemoteRecordSyncableType {
-    var id: String { get }
-}
-
-public enum ACRemoteRecordChange<T: ACRemoteRecordSyncableType> {
-    case found(T, NSManagedObjectID)
-    case inserted(T, NSManagedObjectID)
-    case removed
-    
-    public var isInserted: Bool {
-        switch self {
-        case .inserted:
-            return true
-        default:
-            return false
-        }
-    }
-    public var isFound: Bool {
-        switch self {
-        case .found:
-            return true
-        default:
-            return false
-        }
-    }
-    public var isRemoved: Bool {
-        switch self {
-        case .removed:
-            return true
-        default:
-            return false
-        }
-    }
-}
-
 import Alamofire
 
 /* remote settings
  */
 public struct ACRemoteSettings {
-    public static let serialQueue: DispatchQueue = DispatchQueue(label: "com.ac.snackabletv.remote-serial-queue", attributes: [])
-    public static let concurrentQueue: DispatchQueue = DispatchQueue(label: "com.ac.snackabletv.remote-concurrent-queue", attributes: DispatchQueue.Attributes.concurrent)
+    public static let serialQueue: DispatchQueue = DispatchQueue(label: "com.ac.acsynckit.remote-serial-queue", attributes: [])
+    public static let concurrentQueue: DispatchQueue = DispatchQueue(label: "com.ac.acsynckit.remote-concurrent-queue", attributes: DispatchQueue.Attributes.concurrent)
 }
 
 /// All Remote subclasses fetch remote data ASYNCHRONOUSLY, so be aware the completion block is NOT executed on main thread

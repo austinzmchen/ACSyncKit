@@ -18,17 +18,21 @@ public protocol ACSyncCoordinatorType  {
 
 open class ACSyncCoordinator: NSObject, ACSyncCoordinatorType {
     
-    open let syncGroup: DispatchGroup = DispatchGroup()
+    public let syncGroup: DispatchGroup = DispatchGroup()
     public var didSetup: Bool = false
     
     open var syncContext: ACSyncContext = ACSyncContext()
     open var appTerminateObserver: AnyObject? = nil
     
-    fileprivate var observerTokens: [NSObjectProtocol] = [] //< The tokens registered with NSNotificationCenter
+    private var observerTokens: [NSObjectProtocol] = [] //< The tokens registered with NSNotificationCenter
+    private let sqliteFileName: String
     
     // MARK - life cycle methods
-    
-    public init(remoteSession: ACRemoteSession) {
+    public init(sqliteFileName: String,
+                remoteSession: ACRemoteSessionType?)
+    {
+        self.sqliteFileName = sqliteFileName
+        
         super.init()
         
         self.registerValueTransformers()
@@ -46,8 +50,11 @@ open class ACSyncCoordinator: NSObject, ACSyncCoordinatorType {
         })
     }
     
-    public convenience init(remoteSession: ACRemoteSession, managedObjectContext: NSManagedObjectContext) {
-        self.init(remoteSession: remoteSession)
+    public convenience init(sqliteFileName: String,
+                            remoteSession: ACRemoteSessionType?,
+                            managedObjectContext: NSManagedObjectContext)
+    {
+        self.init(sqliteFileName: sqliteFileName, remoteSession: remoteSession)
         self.syncContext = ACSyncContext(remoteSession: remoteSession, managedObjectContext: managedObjectContext)
     }
     
@@ -58,9 +65,8 @@ open class ACSyncCoordinator: NSObject, ACSyncCoordinatorType {
     }
     
     // MARK - instance methods
-    
     open lazy var coreDataStack: ACCoreDataStackType = {
-        return ACCoreDataStack()
+        return ACCoreDataStack(sqliteFileName: "ACSyncKitExample")
     }()
     
     open func syncAll(_ completion: @escaping (_ success: Bool, _ synced: [Any]?, _ error: Error?) -> ()) {
@@ -94,6 +100,9 @@ extension ACSyncCoordinator: ContextOwnerType {
 extension ACSyncCoordinator {
     open func registerValueTransformers() {
         // should only run once
-        ValueTransformer.setValueTransformer(ACJsonReplaceMeTransformer(), forName: NSValueTransformerName(rawValue: "kACJsonReplaceMeTransformer"))
+        /*
+        ValueTransformer.setValueTransformer(ACJsonReplaceMeTransformer(),
+                                             forName: NSValueTransformerName(rawValue: "kACJsonReplaceMeTransformer"))
+         */
     }
 }

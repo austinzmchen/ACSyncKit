@@ -22,14 +22,14 @@ public protocol ACManagedObjectType {
 
 extension ACManagedObject: ACManagedObjectType {
     // Insert code here to add functionality to your managed object subclass
-    open static func insertItem<T: ACManagedObject>(byID id: String, context: NSManagedObjectContext) -> T {
+    public static func insertItem<T: ACManagedObject>(byID id: String, context: NSManagedObjectContext) -> T {
         let item:T = NSManagedObject.insertObject(byContext: context)
         item.id = id
         return item
     }
 
     // more expensive than delete by ManagedObjectID
-    open static func removeItem<T: ACManagedObject>(ofType type: T.Type, byID id: String, context: NSManagedObjectContext) {
+    public static func removeItem<T: ACManagedObject>(ofType type: T.Type, byID id: String, context: NSManagedObjectContext) {
         let entityName = String(describing: type)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "itemID == %@", id)
@@ -40,7 +40,7 @@ extension ACManagedObject: ACManagedObjectType {
         }
     }
     
-    open static func removeByObjectID(_ objectID: NSManagedObjectID, context: NSManagedObjectContext) {
+    public static func removeByObjectID(_ objectID: NSManagedObjectID, context: NSManagedObjectContext) {
         let object = context.object(with: objectID)
         context.delete(object)
     }
@@ -117,7 +117,6 @@ extension NSManagedObject {
             mutableOrderSet.add(foreignObject)
         }
     }
-
 }
 
 extension NSManagedObjectContext {

@@ -9,18 +9,13 @@ import Foundation
 
 typealias RemoteSessionUserInfo = (id: String, name: String)
 
-public protocol ACRemoteSessionType {
-    var postAuthenticationHttpHeaders: [String:String] {get}
-    var domain: String {get}
-}
-
 open class ACRemoteSession: ACRemoteSessionType {
     static let preAuthenticationHttpHeaders = [
         "Accept":"*/*",
         "Accept-Language":"en-us",
         "Content-Type":"application/json"]
     
-    open let domain: String
+    public let domain: String
     
     public init(domain: String) {
         self.domain = domain

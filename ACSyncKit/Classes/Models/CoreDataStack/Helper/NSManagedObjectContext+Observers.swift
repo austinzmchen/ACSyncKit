@@ -33,9 +33,7 @@ public struct ContextDidSaveNotification {
         return c
     }
     
-    
     // MARK: Private
-    
     fileprivate let notification: Notification
     
     fileprivate func generatorForKey(_ key: String) -> AnyIterator<NSManagedObject> {
@@ -45,9 +43,7 @@ public struct ContextDidSaveNotification {
         var innerGenerator = set.makeIterator()
         return AnyIterator { return innerGenerator.next() as? NSManagedObject }
     }
-    
 }
-
 
 extension ContextDidSaveNotification: CustomDebugStringConvertible {
     public var debugDescription: String {
@@ -62,7 +58,6 @@ extension ContextDidSaveNotification: CustomDebugStringConvertible {
     }
 }
 
-
 public struct ContextWillSaveNotification {
     
     public init(note: Notification) {
@@ -75,13 +70,9 @@ public struct ContextWillSaveNotification {
         return c
     }
     
-    
-    // MARK: Private 
-    
+    // MARK: Private
     fileprivate let notification: Notification
-    
 }
-
 
 public struct ObjectsDidChangeNotification {
 
@@ -119,17 +110,13 @@ public struct ObjectsDidChangeNotification {
         return c
     }
     
-    
     // MARK: Private
-    
     fileprivate let notification: Notification
 
     fileprivate func objectsForKey(_ key: String) -> Set<NSManagedObject> {
         return ((notification as NSNotification).userInfo?[key] as? Set<NSManagedObject>) ?? Set()
     }
-    
 }
-
 
 extension NSManagedObjectContext {
     
@@ -171,6 +158,4 @@ extension NSManagedObjectContext {
                 fromContextDidSave: note.notification)
         }
     }
-    
 }
-

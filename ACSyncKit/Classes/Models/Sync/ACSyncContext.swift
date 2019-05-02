@@ -25,7 +25,7 @@ open class ACSyncPendingTask: NSObject {
 
 open class ACSyncContext: NSObject {
     // remote context
-    open var remoteSession: ACRemoteSession?
+    open var remoteSession: ACRemoteSessionType?
     
     // local CoreData context
     open var managedObjectContext: NSManagedObjectContext?
@@ -36,7 +36,7 @@ open class ACSyncContext: NSObject {
 
 // serializing ACSyncContext
 extension ACSyncContext {
-    public convenience init (remoteSession: ACRemoteSession?, managedObjectContext: NSManagedObjectContext?) {
+    public convenience init (remoteSession: ACRemoteSessionType?, managedObjectContext: NSManagedObjectContext?) {
         self.init()
         self.remoteSession = remoteSession
         self.managedObjectContext = managedObjectContext

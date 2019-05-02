@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 extension NSManagedObjectContext {
     public func performBlockWithGroup(_ group: DispatchGroup, block: @escaping () -> ()) {
         group.enter()
@@ -18,7 +17,6 @@ extension NSManagedObjectContext {
         }
     }
 }
-
 
 extension Sequence where Iterator.Element: NSManagedObject {
     public func remapToContext(_ context: NSManagedObjectContext)
@@ -34,7 +32,6 @@ extension Sequence where Iterator.Element: NSManagedObject {
         }
     }
 }
-
 
 extension NSManagedObjectContext {
     fileprivate var changedObjectsCount: Int {

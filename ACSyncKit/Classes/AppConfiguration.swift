@@ -20,13 +20,13 @@ public struct AppConfigurator: AppConfiguratorType {
     public var syncCoordinator: ACSyncCoordinator?
     
     public func configure() -> AppConfiguration? {
-        guard let rs = self.remoteSession else {
+        guard let _ = self.remoteSession else {
             fatalError("AppConfigurator - configure error")
         }
         let configuration = AppConfiguration()
         
         // set up configration here
-        
+    
         return configuration
     }
 }
@@ -49,18 +49,6 @@ extension AppConfiguration {
                 return false
             }
         }
-    }
-    
-    open static func appVersion() -> String {
-        return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-    }
-    
-    open static func appBuild() -> String {
-        return Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-    }
-    
-    open static func versionWithBuild() -> String {
-        return String(format: "%@ (%@)", self.appVersion(), self.appBuild())
     }
 }
 

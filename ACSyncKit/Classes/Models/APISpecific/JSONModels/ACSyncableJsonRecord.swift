@@ -8,8 +8,6 @@
 import Foundation
 import ObjectMapper
 
-public typealias ACSyncableKeyValuePairType = (key: String, value: AnyObject?)
-
 open class ACSyncableJsonRecord: NSObject, Mappable, ACRemoteRecordSyncableType {
     
     // MARK: app specific stored properties

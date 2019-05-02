@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 /// Implements the integration with Core Data change notifications.
 ///
 /// This protocol merges changes from the main context into the sync context and vice versa.
@@ -25,7 +24,6 @@ public protocol ContextOwnerType: class, ObserverTokenStore {
     /// This will be called whenever objects on the sync managed object context have changed.
     func processChangedLocalObjects(_ managedObjects: [NSManagedObject])
 }
-
 
 extension ContextOwnerType {
     public func setupContexts() {

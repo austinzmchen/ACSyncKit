@@ -24,7 +24,6 @@ public protocol ApplicationActiveStateObserving : class, ObserverTokenStore {
     func applicationDidEnterBackground()
 }
 
-
 extension ApplicationActiveStateObserving {
     public func setupApplicationActiveNotifications() {
         addObserverToken(NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: nil) { [weak self] note in
