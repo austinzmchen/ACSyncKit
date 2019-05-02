@@ -20,6 +20,50 @@ it, simply add the following line to your Podfile:
 pod 'ACSyncKit'
 ```
 
+## Tech Notes
+
+Json Model
+
+```
+import Foundation
+import ObjectMapper
+import AlamofireObjectMapper
+
+open class ACJsonReplaceMe: ACSyncableJsonRecord {
+    var name: String?
+    var desc: String?
+    var isAutoGen: Bool?
+    var itemsType: String?
+    
+    override open func mapping(map: Map) {
+        super.mapping(map: map)
+        
+        name <- map["Name"]
+        desc <- map["Desc"]
+        isAutoGen <- map["IsAutoGen"]
+        itemsType <- map["ItemsType"]
+    }
+}
+
+```
+
+```
+protocol ACReplaceMeProcessorType: ACSyncableProcessorType {}
+
+@objc class ACReplaceMeProcessor: NSObject, ACReplaceMeProcessorType {
+    
+    let syncContext: ACSyncContext
+    required init (context: ACSyncContext) {
+        self.syncContext = context
+    }
+    
+    func sync(_ completion: @escaping (_ success: Bool, _ syncedObjects: [AnyObject]?, _ error: Error?) -> ()) {}
+}
+
+fileprivate let kRemoteFetchSizeDefault: Int = 16
+```
+
+
 ## Author
 
 austinzmchen, austin@accodeworks.com

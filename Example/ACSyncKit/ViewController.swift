@@ -27,6 +27,49 @@ class ViewController: UIViewController {
         syncer.syncAll { (success, results, error) in
             print(success)
         }
+        
+        var objectIDs: [NSManagedObjectID] = []
+        
+        managedObjectContext.performAndWait({
+            let updateData: (ACRemoteRecordSyncableType, NSManagedObjectID) -> Void = { (remoteRecord, managedObjectID) in
+                guard let object = managedObjectContext.object(with: managedObjectID) as? S,
+                    let rRecord = remoteRecord as? JsonPairs else
+                {
+                    return
+                }
+//                object.saveSyncableProperties(fromSyncable: rRecord)
+                
+                let allKeys = Array(User.entity().attributesByName.keys)
+                let dict = User.entity().dictionaryWithValues(forKeys: allKeys)
+                print(dict)
+                for (key, value) in dict {
+                    guard let r = rRecord as? [String: Any] else {continue}
+                    object.setValue(r[key], forKey: key)
+                }
+            }
+            
+            let changes : [ACRemoteRecordChange<JsonPairs>] = managedObjectContext.findOrInsert(items, toManagedObjectType: S.self, byUniqueKey: "id",
+                                                                                        removeLocalItemsIfNotFoundInRemote: true)
+            for change in changes {
+                switch change {
+                case .found(let remoteRecord, let managedObjectID):
+                    updateData(remoteRecord, managedObjectID)
+                    break
+                case .inserted(let remoteRecord, let managedObjectID):
+                    updateData(remoteRecord, managedObjectID)
+                    break
+                default:
+                    break
+                }
+                
+                guard let objectID = change.managedObjectID else { continue }
+                objectIDs.append(objectID)
+            }
+            
+            if (managedObjectContext.hasChanges) {
+                try! managedObjectContext.save() // TODO: for production, change try! to catch
+            }
+        })
     }
     
     func manualSave() {

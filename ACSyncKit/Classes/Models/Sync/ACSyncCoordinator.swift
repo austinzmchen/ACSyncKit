@@ -72,6 +72,15 @@ open class ACSyncCoordinator: NSObject, ACSyncCoordinatorType {
     open func syncAll(_ completion: @escaping (_ success: Bool, _ synced: [Any]?, _ error: Error?) -> ()) {
         fatalError("Should be implemented by subclass")
     }
+    
+    /**
+     eg. ValueTransformer.setValueTransformer(ACJsonTransformer<ACJsonReplaceMe>(),
+            forName: NSValueTransformerName(rawValue: "kACJsonReplaceMeTransformer"))
+     */
+    open func registerValueTransformers() {
+        // should only run once
+        fatalError("Should be implemented by subclass")
+    }
 }
 
 // MARK: - Context Owner -

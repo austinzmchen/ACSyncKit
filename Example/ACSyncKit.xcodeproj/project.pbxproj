@@ -122,6 +122,9 @@
 				B60D457E227B818900EA57FD /* User+CoreDataClass.swift */,
 				B60D457D227B818900EA57FD /* User+CoreDataProperties.swift */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				C4EFBD5120802AED00A4D736 /* ACSyncKitExample.xcdatamodeld */,
+				C4EFBD542080372F00A4D736 /* User+CoreDataClass.swift */,
+				C4EFBD552080373000A4D736 /* User+CoreDataProperties.swift */,
 			);
 			name = "Example for ACSyncKit";
 			path = ACSyncKit;
